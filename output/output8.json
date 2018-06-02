@@ -1,0 +1,35 @@
+[
+  {
+    "id": 8,
+    "timestamp": "2018-03-08T14:19:16.164-0100",
+    "customer_id": 12,
+    "items": [
+      {
+        "name": "woda 1.5l",
+        "quantity": 3,
+        "price": 2.0
+      },
+      {
+        "name": "chleb biały",
+        "quantity": 25,
+        "price": 2.2
+      },
+      {
+        "name": "chleb ciemny",
+        "quantity": 24,
+        "price": 2.5
+      },
+      {
+        "name": "chleb ciemny",
+        "quantity": 7,
+        "price": 2.5
+      },
+      {
+        "name": "woda gazowana 1.5l",
+        "quantity": 22,
+        "price": 2.1
+      }
+    ],
+    "sum": 184.6999969482422
+  }
+]

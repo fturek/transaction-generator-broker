@@ -1,0 +1,83 @@
+plugins {
+    id "java"
+    id "com.palantir.jacoco-coverage" version "0.4.0"
+    id "maven-publish"
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+    id "io.franzbecker.gradle-lombok" version "1.11"
+}
+
+group 'transaction-generator_main'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+dependencies {
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.2'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile group: 'ch.qos.logback.contrib', name: 'logback-json-classic', version: '0.1.2'
+
+    compile 'org.springframework:spring-context:5.0.4.RELEASE'
+
+    testCompile(
+
+            //JUnit
+            'junit:junit:4.12',
+            //Rich asserting: AssertJ
+            'org.assertj:assertj-core:3.9.0',
+
+            //Mocks: Mockito
+            'org.mockito:mockito-core:2.8.9',
+
+            //Power mock
+            'org.powermock:powermock-api-mockito2:1.7.3',
+            'org.powermock:powermock-module-junit4:1.7.3'
+
+    )
+
+    compile group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.25'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.10.0'
+    compile group: 'com.savoirtech.logging', name: 'slf4j-json-logger', version: '2.0.2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.20'
+    compile group: 'sax', name: 'sax', version: '2.0.1'
+}
+
+
+shadowJar {
+    baseName = 'transaction-generator'
+    classifier = null
+    version = null
+    manifest {
+        attributes "Main-Class": "Main"
+    }
+}
+
+test {
+    reports {
+        junitXml.enabled = false
+        html.enabled = true
+    }
+}
+
+task buildProj {
+    clean
+    build
+    shadowJar
+}
