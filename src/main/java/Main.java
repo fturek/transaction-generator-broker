@@ -38,7 +38,10 @@ public class Main {
                         properties.getProperty("eventsCount"),
                         "-outDir",
                         "." + properties.getProperty("outDir"),
-                        "--format=" + properties.getProperty("format")
+                        "--format=" + properties.getProperty("format"),
+                        "-broker" + properties.getProperty("broker"),
+                        "-queue" + properties.getProperty("queue"),
+                        "-topic" + properties.getProperty("topic"),
                 };
 
                 System.out.println();

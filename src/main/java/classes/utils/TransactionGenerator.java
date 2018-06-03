@@ -4,6 +4,7 @@ import classes.model.ParsedParameters;
 import classes.model.RawParameters;
 import classes.model.Transaction;
 import classes.saver.Saver;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,31 @@ public class TransactionGenerator {
             for (int i = 0; i < howMany; i++) {
                 ArrayList<Transaction> transactions = TransactionParser.createTransaction(parsedParameters, i);
                 saver.saveToFile(transactions, new File(parsedParameters.getOutDir() + "/output" + i + "." + saver.getExtension()));
+
+                if (parsedParameters.getBroker() != null) {
+                    try {
+                        String brokerUrl = parsedParameters.getBroker();
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        String message = objectMapper.writeValueAsString(transactions);
+
+                        if (parsedParameters.getQueue() != null) {
+                            JmsQueueExample jmsQueueExample = new JmsQueueExample();
+                            String gueueName = parsedParameters.getQueue();
+                            jmsQueueExample.sendQueue(brokerUrl, gueueName, message);
+                        }
+
+                        if (parsedParameters.getTopic() != null) {
+                            JmsTopicExample jmsTopicExample = new JmsTopicExample();
+                            String topicName = parsedParameters.getTopic();
+
+                            jmsTopicExample.sendTopic(brokerUrl, topicName, message);
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
             }
         } catch (JAXBException e) {
             e.printStackTrace();

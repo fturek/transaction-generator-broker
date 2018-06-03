@@ -132,6 +132,9 @@ public class OptionsValidator {
         if (checkCustomerIds() && checkEventsCount() && checkOutDir() && checkDateRange() &&
                 checkItemsQuantity() && checkItemsCount() && checkInputFile()) {
 
+            parsedParameters.setBroker(rawParameters.getBroker());
+            parsedParameters.setQueue(rawParameters.getQueue());
+            parsedParameters.setTopic(rawParameters.getTopic());
             logger.info("All Checked completed!");
             return true;
         }

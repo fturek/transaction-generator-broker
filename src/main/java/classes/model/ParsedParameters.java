@@ -4,19 +4,17 @@ public class ParsedParameters {
 
     private static String customerIdFrom;
     private static String customerIdTo;
-
     private static String dateRange;
-
     private static String itemsFile;
-
     private static String itemsCountFrom;
     private static String itemsCountTo;
-
     private static String itemsQuantityFrom;
     private static String itemsQuantityTo;
-
     private static String eventsCount;
     private static String outDir;
+    private static String broker;
+    private static String queue;
+    private static String topic;
 
     public static String getCustomerIdFrom() {
         return customerIdFrom;
@@ -96,5 +94,29 @@ public class ParsedParameters {
 
     public static void setItemsFile(String itemsFile) {
         ParsedParameters.itemsFile = itemsFile;
+    }
+
+    public static String getBroker() {
+        return broker;
+    }
+
+    public static void setBroker(String broker) {
+        ParsedParameters.broker = broker;
+    }
+
+    public static String getQueue() {
+        return queue;
+    }
+
+    public static void setQueue(String queue) {
+        ParsedParameters.queue = queue;
+    }
+
+    public static String getTopic() {
+        return topic;
+    }
+
+    public static void setTopic(String topic) {
+        ParsedParameters.topic = topic;
     }
 }

@@ -22,6 +22,9 @@ public class OptionParser {
     private String itemsQuantityFromTo;
     private String eventsCount;
     private String outDir;
+    private String broker;
+    private String queue;
+    private String topic;
 
     public void setArguments(String[] arguments) {
         this.arguments = arguments;
@@ -40,6 +43,9 @@ public class OptionParser {
         options.addOption("itemsQuantity", true, "itemsQuantity");
         options.addOption("eventsCount", true, "eventsCount");
         options.addOption("outDir", true, "outDir");
+        options.addOption("broker", true, "broker");
+        options.addOption("queue", true, "queue");
+        options.addOption("topic", true, "topic");
     }
 
     public void parseCommandLineArgs() {
@@ -57,6 +63,9 @@ public class OptionParser {
             itemsQuantityFromTo = (cmd.getOptionValue("itemsQuantity") != null ? cmd.getOptionValue("itemsQuantity") : "1:5");
             eventsCount = (cmd.getOptionValue("eventsCount") != null ? cmd.getOptionValue("eventsCount") : "1000");
             outDir = (cmd.getOptionValue("outDir") != null ? cmd.getOptionValue("outDir") : "./");
+            broker = (cmd.getOptionValue("broker") != null ? cmd.getOptionValue("broker") : null);
+            queue = (cmd.getOptionValue("queue") != null ? cmd.getOptionValue("queue") : null);
+            topic = (cmd.getOptionValue("topic") != null ? cmd.getOptionValue("topic") : null);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -72,6 +81,9 @@ public class OptionParser {
         rawParameters.setItemsQuantityFromTo(itemsQuantityFromTo);
         rawParameters.setEventsCount(eventsCount);
         rawParameters.setOutDir(outDir);
+        rawParameters.setBroker(broker);
+        rawParameters.setQueue(queue);
+        rawParameters.setTopic(topic);
         return rawParameters;
     }
 
