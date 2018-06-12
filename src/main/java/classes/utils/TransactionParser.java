@@ -25,7 +25,7 @@ public class TransactionParser {
         transaction.timestamp = parsedParameters.getDateRange();
         transaction.customer_id = Randomizer.getInt(parsedParameters.getCustomerIdFrom(), parsedParameters.getCustomerIdTo());
         transaction.items = items;
-        transaction.sum = items.stream().mapToDouble(item -> item.quantity * item.price).sum();
+        transaction.sum = items.stream().mapToDouble(item -> item.quantity * item.price.doubleValue()).sum();
         transactions.add(transaction);
 
 
