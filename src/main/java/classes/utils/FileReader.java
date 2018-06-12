@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class FileReader {
@@ -28,7 +27,7 @@ public class FileReader {
                 Item item = new Item();
                 item.name = itemValues[0].replaceAll("\"", "");
                 item.quantity = Randomizer.getInt(parsedParameters.getItemsQuantityFrom(), parsedParameters.getItemsQuantityTo());
-                item.price = Float.parseFloat(itemValues[1]);
+                item.price = Double.parseDouble(itemValues[1]);
                 items.add(item);
             }
         } catch (IOException e) {
